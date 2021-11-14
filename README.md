@@ -1,1 +1,1 @@
-Режим вывода команд на экран (ECHO) включен.
+Hight perfomance computing (HPC) assignments
