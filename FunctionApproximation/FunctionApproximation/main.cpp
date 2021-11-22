@@ -2,27 +2,28 @@
 #include "FourierSeries.h"
 
 int main() {
-	int arraySize = 10;
-	int testSize = 4;
+	const int arraySize = 200;
+	const int approximatedArraySize = 100;
+	const int approximationAccuracy = 50;
+	const double leftBound = -10.0;
+	const double rightBound = 10.0;
 
-	//double** testArray = new double* [testSize];
-	//for (int i = 0; i < testSize; ++i) {
-	//	testArray[i] = new double[2];
-	//	testArray[i][1] = 0;
-	//}
+	// Generating an array of {x,y}
+	double** pointsArray = GenerateData(arraySize, leftBound, rightBound, false);
+	MakeCSV(pointsArray, arraySize, "generated_points.csv");
 
-	//testArray[0][0] = 1.0;
-	//testArray[1][0] = -0.0;
-	//testArray[2][0] = -1.0;
-	//testArray[3][0] = 0.0;
-
-	double** pointsArray = GenerateData(arraySize, -10.0, 10.0, false);
-	MakeCSV(pointsArray, arraySize, "first_try.csv");
-
+	// Generating an array of DFT coefficients {real, im}
 	double** fourierSeriesArray = DFTSamples(pointsArray, arraySize);
-	//double** fourierSeriesArray = DFTSamples(testArray, 4);
+	MakeCSV(fourierSeriesArray, arraySize, "fourier_coefficients.csv", "real,im\n");
 
-	MakeCSV(fourierSeriesArray, arraySize, "testFourier.csv", "real,im\n");
+	// Generating a points array {x,y} of the approximated func
+	double** approximatedPoints = IDFTSamples(fourierSeriesArray, arraySize, approximationAccuracy, leftBound, rightBound, approximatedArraySize);
+	MakeCSV(approximatedPoints, approximatedArraySize, "approximated_function_points.csv");
+
+	// Free allocated memory
+	DeleteArray2D(pointsArray, arraySize);
+	DeleteArray2D(fourierSeriesArray, arraySize);
+	DeleteArray2D(approximatedPoints, approximatedArraySize);
 
 	return 0;
 }

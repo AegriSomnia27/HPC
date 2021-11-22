@@ -11,13 +11,27 @@ const int y = 1;
 
 
 inline double Function(double x) {
+	// non-periodic function
 	// 3x^3 + 7x^2 + 5x + 1.1
 	//return 3 * pow(x, 3) + 7 * pow(x, 2) + 5 * x + 1.1;
+	
+	// piecewise function
+	/*if (x < -5) {
+		return -2;
+	}
+	else if (x >= -5 && x < 5)
+		return 2;
+	else
+		return -2;*/
+
+	// periodic function
+	//sin(5x) + cos(x)
 	return (std::sin(5*x)+std::cos(x));
 }
 
 double** GenerateData(const int arraySize, const double leftBound, const double rightBound,
 					  const bool isNoisy, const double mean, const double sigma){
+	// initializing RNG if we need to add some noise to a function
 	std::random_device randomDevice;
 	std::mt19937 gen(randomDevice());
 	std::normal_distribution<double> noise(mean, sigma);
@@ -49,23 +63,28 @@ void DeleteArray2D(double** pointsArray, const int arraySize) {
 		delete[] pointsArray[i];
 	}
 	delete[] pointsArray;
+
+	pointsArray = nullptr;
 }
 
 void MakeCSV(double** pointsArray, const int arraySize, const char* fileName, const char* fileHeader){
-	// create a CSV file and open it
+	// this function is used for generating a csv file based on an array of points
+	// in my case it was used for data visualization with python matplotlib 
+
+	// creates a CSV file and opens it
 	std::ofstream fileCSV;
 	fileCSV.open(fileName);
 
-	// raise an error if the file cannot be oppened
+	// raises an error if the file cannot be oppened
 	if (!fileCSV.is_open()) {
 		std::cerr << "File cannot be opened";
 		return;
 	}
 
-	// write a header
+	// writes a header
 	fileCSV << fileHeader;
 
-	//write data
+	//writes data
 	for (int i = 0; i < arraySize; ++i) {
 		fileCSV << pointsArray[i][x] << ',' << pointsArray[i][y] << '\n';
 	}
