@@ -15,21 +15,21 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="DataGenerating.cpp">
+    <ClCompile Include="data_generation.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="FourierSeries.cpp">
+    <ClCompile Include="fourier_series_serial.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="DataGenerating.h">
+    <ClInclude Include="data_generation.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="FourierSeries.h">
+    <ClInclude Include="fourier_series_serial.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

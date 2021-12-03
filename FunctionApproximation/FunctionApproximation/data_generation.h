@@ -1,5 +1,5 @@
-#ifndef DATA_GENERATING_H
-#define DATA_GENERATING_H
+#ifndef DATA_GENERATION_H
+#define DATA_GENERATION_H
 
 
 inline double Function(const double x); 
@@ -12,4 +12,4 @@ void MakeCSV(double** pointsArray, const int arraySize, const char* fileName="te
 			 const char* fileHeader="x,y\n");
 
 
-#endif // !DATA_GENERATING_H
+#endif // !DATA_GENERATION_H

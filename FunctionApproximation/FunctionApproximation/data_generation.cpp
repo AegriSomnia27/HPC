@@ -1,4 +1,4 @@
-#include "dataGenerating.h"
+#include "data_generation.h"
 #include <random>
 #include <iostream>
 #include <fstream>
@@ -16,17 +16,17 @@ inline double Function(double x) {
 	//return 3 * pow(x, 3) + 7 * pow(x, 2) + 5 * x + 1.1;
 	
 	// piecewise function
-	/*if (x < -5) {
+	if (x < -5) {
 		return -2;
 	}
 	else if (x >= -5 && x < 5)
 		return 2;
 	else
-		return -2;*/
+		return -2;
 
 	// periodic function
 	//sin(5x) + cos(x)
-	return (std::sin(5*x)+std::cos(x));
+	//return (std::sin(5*x)+std::cos(x));
 }
 
 double** GenerateData(const int arraySize, const double leftBound, const double rightBound,

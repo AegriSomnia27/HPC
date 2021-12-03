@@ -1,4 +1,4 @@
-#include "FourierSeries.h"
+#include "fourier_series_serial.h"
 #include <cmath>
 #include <iostream>
 
@@ -31,13 +31,18 @@ double* DFTSample(double** pointsArray, const int arraySize, const int k){
 	return coefficientsDFT;
 }
 
-double** DFTSamples(double** pointsArray, const int arraySize) {
+double** DFTSamples(double** pointsArray, const int arraySize, const int approximationAccuracy) {
 	// Calculate coefficients for k iteration
-	double** samples = new double* [arraySize];
+	if (approximationAccuracy > arraySize) {
+		throw std::length_error("Approximation accuracy must not be bigger than sample size!\n");
+		return nullptr;
+	}
 
-	for (int k = 0; k < arraySize; ++k) {
+	double** samples = new double* [approximationAccuracy];
+
+	for (int k = 0; k < approximationAccuracy; ++k) {
 		//std::cout << "  k = " << k << "\n";
-		samples[k] = DFTSample(pointsArray, arraySize, k);
+		samples[k] = DFTSample(pointsArray, approximationAccuracy, k);
 		//std::cout << "  X_" << k << " = (" << samples[k][real] << ", " << samples[k][im] << ")\n\n";
 	}
 
@@ -48,7 +53,7 @@ double IDFTSample(double** fourierCoefficients, const int samplesSize, const int
 				  const int k, const int numberOfPoints){
 	// Calculate y coordinate for k iteration
 	if (approximationAccuracy > samplesSize) {
-		std::cout << "Approximation accuracy must not be bigger than the size of samples!\n";
+		throw std::length_error("Approximation accuracy must not be bigger than the size of samples!\n");
 		return 0.0;
 	}
 
@@ -78,7 +83,7 @@ double** IDFTSamples(double** fourierCoefficients, const int samplesSize, const 
 
 		approximatePointsArray[k][x] = xCoordinate;
 		approximatePointsArray[k][y] = IDFTSample(fourierCoefficients, samplesSize, approximationAccuracy, k, numberOfPoints);
-		std::cout << "  Coordinates_" << k << " = (" << approximatePointsArray[k][x] << ", " << approximatePointsArray[k][y] << ")\n\n";
+		//std::cout << "  Coordinates_" << k << " = (" << approximatePointsArray[k][x] << ", " << approximatePointsArray[k][y] << ")\n\n";
 
 		xCoordinate += offset;
 	}

@@ -19,13 +19,13 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="DataGenerating.cpp" />
-    <ClCompile Include="FourierSeries.cpp" />
+    <ClCompile Include="data_generation.cpp" />
+    <ClCompile Include="fourier_series_serial.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="DataGenerating.h" />
-    <ClInclude Include="FourierSeries.h" />
+    <ClInclude Include="data_generation.h" />
+    <ClInclude Include="fourier_series_serial.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
