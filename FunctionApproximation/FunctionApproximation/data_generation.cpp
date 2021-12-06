@@ -121,4 +121,5 @@ void MakeCSV_1D(double* pointsArray, const int arraySize, const char* fileName, 
 	}
 
 	fileCSV.close();
+	std::cout << "File " << fileName << " has been written\n\n";
 }

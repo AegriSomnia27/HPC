@@ -70,14 +70,14 @@ int main(int argc, char** argv) {
 		leftBound, rightBound, approximatedArraySize, pointsPerCPU, procRank);
 
 	// Gather the data and make CSV
+	MPI_Barrier(MPI_COMM_WORLD);
+	double* approximatedPointsParallel = new double[pointsPerCPU * procNum * 2];
+	MPI_Gather(procApproximatedPointsArray, pointsPerCPU * 2, MPI_DOUBLE, approximatedPointsParallel, pointsPerCPU * 2, MPI_DOUBLE, 0, MPI_COMM_WORLD);
 
 	if (procRank == 0) {
-		double* approximatedPointsParallel = new double[pointsPerCPU * procNum*2];
-		MPI_Gather(procApproximatedPointsArray, pointsPerCPU*2, MPI_DOUBLE, approximatedPointsParallel, pointsPerCPU*2, MPI_DOUBLE, 0, MPI_COMM_WORLD);
 		MakeCSV_1D(approximatedPointsParallel, (pointsPerCPU*procNum), "approximated_function_points_parallel.csv");
-		delete[] approximatedPointsParallel;
 	}
-
+	delete[] approximatedPointsParallel;
 	DeleteArray2D(procFourierSeries, numberOfElementsPerCPU);
 	delete[] linearizedArray;
 	delete[] DFTCoefficientsArray;
