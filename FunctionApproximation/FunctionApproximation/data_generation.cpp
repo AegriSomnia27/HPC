@@ -67,7 +67,7 @@ void DeleteArray2D(double** pointsArray, const int arraySize) {
 	pointsArray = nullptr;
 }
 
-void MakeCSV(double** pointsArray, const int arraySize, const char* fileName, const char* fileHeader){
+void MakeCSV_2D(double** pointsArray, const int arraySize, const char* fileName, const char* fileHeader){
 	// this function is used for generating a csv file based on an array of points
 	// in my case it was used for data visualization with python matplotlib 
 
@@ -87,6 +87,37 @@ void MakeCSV(double** pointsArray, const int arraySize, const char* fileName, co
 	//writes data
 	for (int i = 0; i < arraySize; ++i) {
 		fileCSV << pointsArray[i][x] << ',' << pointsArray[i][y] << '\n';
+	}
+
+	fileCSV.close();
+}
+
+void MakeCSV_1D(double* pointsArray, const int arraySize, const char* fileName, const char* fileHeader){
+	// this function is used for generating a csv file based on an array of points
+	// in my case it was used for data visualization with python matplotlib 
+
+	// creates a CSV file and opens it
+	std::ofstream fileCSV;
+	fileCSV.open(fileName);
+
+	// raises an error if the file cannot be oppened
+	if (!fileCSV.is_open()) {
+		std::cerr << "File cannot be opened";
+		return;
+	}
+
+	// writes a header
+	fileCSV << fileHeader;
+
+	//writes data
+	for (int i = 0; i < arraySize; ++i) {
+		for (int j = 0; j < dimensions; j++) {
+			fileCSV << pointsArray[i * dimensions + j];
+			if (j == 0) {
+				fileCSV << ",";
+			}
+		}
+		fileCSV << std::endl;
 	}
 
 	fileCSV.close();

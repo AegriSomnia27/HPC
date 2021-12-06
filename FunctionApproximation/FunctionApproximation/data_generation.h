@@ -8,8 +8,11 @@ double** GenerateData(const int arraySize, const double leftBound=-10.0, const d
 
 void DeleteArray2D(double** pointsArray, const int arraySize);
 
-void MakeCSV(double** pointsArray, const int arraySize, const char* fileName="test_file.csv", 
+void MakeCSV_2D(double** pointsArray, const int arraySize, const char* fileName="test_file.csv", 
 			 const char* fileHeader="x,y\n");
+
+void MakeCSV_1D(double* pointsArray, const int arraySize, const char* fileName = "test_file.csv",
+				const char* fileHeader = "x,y\n");
 
 
 #endif // !DATA_GENERATION_H

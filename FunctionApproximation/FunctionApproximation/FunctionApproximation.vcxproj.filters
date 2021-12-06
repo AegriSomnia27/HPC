@@ -24,12 +24,18 @@
     <ClCompile Include="fourier_series_serial.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="fourier_series_parallel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="data_generation.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="fourier_series_serial.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="fourier_series_parallel.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

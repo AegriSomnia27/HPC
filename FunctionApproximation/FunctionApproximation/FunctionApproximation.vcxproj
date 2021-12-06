@@ -20,11 +20,13 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="data_generation.cpp" />
+    <ClCompile Include="fourier_series_parallel.cpp" />
     <ClCompile Include="fourier_series_serial.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="data_generation.h" />
+    <ClInclude Include="fourier_series_parallel.h" />
     <ClInclude Include="fourier_series_serial.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
